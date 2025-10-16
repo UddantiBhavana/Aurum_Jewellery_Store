@@ -95,11 +95,4 @@ git commit -m "Remove .env from repo"
 git push
 ```
 
----
-
-## License
-
-This project is for demonstration purposes. Modify and use according to your needs.
-
-```
 
