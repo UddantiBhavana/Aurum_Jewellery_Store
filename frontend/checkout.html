@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – Aurum</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Aurum Logo">
+        <span class="brand-name">Aurum</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="shop.html" class="nav-item">Collections</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="login.html" class="nav-item login" id="userBtn">Login</a>
+        <a href="cart.html" class="cart-icon">
+          <img src="images/cart.jpg" alt="Cart">
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Checkout Page -->
+  <section class="checkout-page">
+    <h2>Checkout</h2>
+
+    <!-- Step 1: Order Summary -->
+    <div id="step1" class="checkout-box">
+      <h3>Order Summary</h3>
+      <div id="orderSummaryContainer"></div>
+      <button id="toStep2" class="btn-gold">Next: Address</button>
+    </div>
+
+    <!-- Step 2: Shipping Address -->
+    <div id="step2" class="checkout-step" style="display:none;">
+      <h3>Shipping Address</h3>
+      <form id="addressForm">
+        <div class="inputs-row">
+          <input type="text" name="fullName" placeholder="Full Name" required>
+          <input type="text" name="street" placeholder="Street Address" required>
+          <input type="text" name="city" placeholder="City" required>
+          <input type="text" name="state" placeholder="State" required>
+          <input type="text" name="zip" placeholder="ZIP Code" required>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+        <button type="submit" class="btn-gold">Next: Payment</button>
+      </form>
+    </div>
+
+
+    <!-- Step 3: Payment -->
+    <div id="step3" class="checkout-step" style="display:none;">
+      <h3>Payment</h3>
+      <p>Choose payment method:</p>
+      <div class="payment-options">
+        <label><input type="radio" name="paymentMethod" value="cod" checked> Cash on Delivery</label>
+        <label><input type="radio" name="paymentMethod" value="card"> Debit/Credit Card</label>
+        <label><input type="radio" name="paymentMethod" value="upi"> UPI/Wallet</label>
+      </div>
+      <button id="payBtn" class="btn-gold">Pay Now</button>
+    </div>
+
+
+    <!-- Step 4: Order Confirmation -->
+    <div id="step4" class="checkout-box" style="display:none;">
+      <h3>Order Confirmed!</h3>
+      <div class="tick-animation">✔</div>
+      <p>Your order has been placed successfully.</p>
+      <a href="index.html" class="btn-gold" id="lastbtn">Continue Shopping</a>
+    </div>
+
+
+  </section>
+
+  <script src="js/checkout.js"></script>
+  <script>
+  // Check if user is logged in
+  const token = localStorage.getItem('token');
+  const loginLink = document.querySelector('.nav-item.login');
+
+  if (token) {
+    // User is logged in
+    loginLink.textContent = 'Logout';
+    loginLink.href = '#';
+    loginLink.addEventListener('click', () => {
+      localStorage.removeItem('token'); // remove session
+      alert('Logged out successfully!');
+      window.location.href = 'login.html';
+    });
+  } else {
+    // User not logged in
+    loginLink.textContent = 'Login';
+    loginLink.href = 'login.html';
+  }
+</script>
+
+</body>
+
+</html>

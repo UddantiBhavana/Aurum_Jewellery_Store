@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Aurum</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+
+<body class="no-scroll">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Aurum Logo">
+        <span class="brand-name">Aurum</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="shop.html" class="nav-item active">Collections</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="login.html" class="nav-item login">Login</a>
+        <a href="cart.html" class="cart-icon">
+          <img src="images/cart.jpg" alt="Cart">
+          <span class="cart-count" id="cartCount"></span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-page">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you. Get in touch for inquiries, feedback, or assistance.</p>
+
+    <div class="contact-container">
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn-gold">Send Message</button>
+      </form>
+
+
+      <div class="contact-info">
+        <h3>Our Boutique</h3>
+        <p>Royal Plaza, MG Road, Hyderabad, India</p>
+        <p>Email: support@aurum.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+  </section>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill out all fields.');
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:5000/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert('Message sent successfully!');
+          document.getElementById('contactForm').reset();
+        } else {
+          alert('Error: ' + data.error);
+        }
+      } catch (err) {
+        console.error('Error sending message:', err);
+        alert('Failed to send message. Check console for details.');
+      }
+    });
+  </script>
+  <script>
+  // Check if user is logged in
+  const token = localStorage.getItem('token');
+  const loginLink = document.querySelector('.nav-item.login');
+
+  if (token) {
+    // User is logged in
+    loginLink.textContent = 'Logout';
+    loginLink.href = '#';
+    loginLink.addEventListener('click', () => {
+      localStorage.removeItem('token'); // remove session
+      alert('Logged out successfully!');
+      window.location.href = 'login.html';
+    });
+  } else {
+    // User not logged in
+    loginLink.textContent = 'Login';
+    loginLink.href = 'login.html';
+  }
+</script>
+
+
+</body>
+
+</html>

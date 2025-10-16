@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurum – The Royal Gems Store</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="icon" href="images/logo.png" type="image/png">
+
+</head>
+
+<body>
+
+  <header class="navbar">
+    <nav class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Aurum Logo">
+        <span class="brand-name">Aurum</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="shop.html" class="nav-item">Collections</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="login.html" class="nav-item login" id="userBtn">Login</a>
+        <a href="cart.html" class="cart-icon">
+          <img src="images/cart.jpg" alt="Cart">
+          <span class="cart-count" id="cartCount"></span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero-slider relative overflow-hidden">
+    <div class="slider-container">
+      <div class="slide active" style="background-image: url('images/hero1.jpg');">
+        <div class="overlay"></div>
+        <div class="hero-content center-align">
+          <h1 class="slide-title">The Lumina Collection</h1>
+          <p class="slide-subtitle">Radiance in Every Detail</p>
+          <a href="shop.html" class="btn-gold">Discover the Collection</a>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image: url('images/hero2.jpg');">
+        <div class="overlay"></div>
+        <div class="hero-content center-align">
+          <h1 class="slide-title">Timeless Craftsmanship</h1>
+          <p class="slide-subtitle">Where Tradition Meets Elegance</p>
+          <a href="shop.html" class="btn-gold">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image: url('images/hero3.jpg');">
+        <div class="overlay"></div>
+        <div class="hero-content center-align">
+          <h1 class="slide-title">The Royal Edit</h1>
+          <p class="slide-subtitle">Exclusive Designs for the Modern Queen</p>
+          <a href="shop.html" class="btn-gold">Explore More</a>
+        </div>
+      </div>
+
+      <div class="slide" style="background-image: url('images/hero4.jpg');">
+        <div class="overlay"></div>
+        <div class="hero-content center-align">
+          <h1 class="slide-title">Pure Brilliance</h1>
+          <p class="slide-subtitle">Jewels That Tell Your Story</p>
+          <a href="shop.html" class="btn-gold">View Collection</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collections">
+    <h2>Our Top Collections</h2>
+    <div class="collection-grid">
+      <div class="collection-card">
+        <img src="images/product7.jpg" alt="Ethereal Gold">
+        <h3>Ethereal Gold</h3>
+      </div>
+      <div class="collection-card">
+        <img src="images/product2.jpg" alt="Diamond Whisper">
+        <h3>Diamond Whisper</h3>
+      </div>
+      <div class="collection-card">
+        <img src="images/product4.jpg" alt="Rose Radiance">
+        <h3>Rose Radiance</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💬 Brand Story -->
+  <section class="brand-story">
+    <h2>Our Promise</h2>
+    <p>At Aurum, we believe jewelry is more than an accessory—it’s an expression of legacy and love.
+      Every piece is handcrafted using ethically sourced materials and designed to shine through generations.
+    </p>
+  </section>
+
+  <!-- ⭐ Testimonials -->
+  <section class="testimonials">
+    <blockquote>
+      “Aurum’s craftsmanship is simply exquisite. Their pieces radiate sophistication and artistry unlike any other.”
+    </blockquote>
+    <p class="source">– Vogue India</p>
+  </section>
+
+  <!-- 👣 Footer -->
+  <footer class="footer">
+    <div>
+      <p>&copy; 2025 <span class>Aurum</span> – The Royal Gems Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Rolling Hero Section Script (Keep this simplified logic)
+    let slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function nextSlide() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    setInterval(nextSlide, 5000); 
+  </script>
+  <script src="js/navbar.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem('token');
+  const loginLink = document.querySelector('.nav-item.login');
+
+  if (token) {
+    // User is logged in
+    loginLink.textContent = 'Logout';
+    loginLink.href = '#';
+    loginLink.addEventListener('click', () => {
+      localStorage.removeItem('token'); // remove session
+      alert('Logged out successfully!');
+      window.location.href = 'login.html';
+    });
+  } else {
+    // User not logged in
+    loginLink.textContent = 'Login';
+    loginLink.href = 'login.html';
+  }
+});
+</script>
+
+
+</body>
+
+</html>

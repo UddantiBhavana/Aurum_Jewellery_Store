@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Aurum</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+
+<body class="no-scroll">
+
+  <header class="navbar">
+    <nav class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Aurum Logo">
+        <span class="brand-name">Aurum</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="shop.html" class="nav-item">Collections</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="login.html" class="nav-item login">Login</a>
+        <a href="cart.html" class="cart-icon">
+          <img src="images/cart.jpg" alt="Cart">
+          <span class="cart-count" id="cartCount"></span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section class="about-page">
+    <div class="about-container">
+      <div class="about-content">
+        <h2>About Aurum</h2>
+        <p>
+          Founded with a vision to redefine luxury, Aurum stands as a symbol of timeless elegance and exquisite
+          craftsmanship. Our jewelry pieces are not just accessories—they’re heirlooms, crafted with passion and
+          precision by the
+          finest artisans.
+        </p>
+
+        <p>
+          We source only the most ethically obtained gemstones and metals, ensuring that every sparkle represents
+          integrity as much as beauty. Each creation reflects the spirit of royalty and the grace of modern design.
+        </p>
+      </div>
+
+      <div class="about-image">
+        <img src="images/about-banner.jpg" alt="Aurum Craftsmanship">
+      </div>
+    </div>
+  </section>
+    <script src="js/navbar.js"></script>
+    <script>
+  // Check if user is logged in
+  const token = localStorage.getItem('token');
+  const loginLink = document.querySelector('.nav-item.login');
+
+  if (token) {
+    // User is logged in
+    loginLink.textContent = 'Logout';
+    loginLink.href = '#';
+    loginLink.addEventListener('click', () => {
+      localStorage.removeItem('token'); // remove session
+      alert('Logged out successfully!');
+      window.location.href = 'login.html';
+    });
+  } else {
+    // User not logged in
+    loginLink.textContent = 'Login';
+    loginLink.href = 'login.html';
+  }
+</script>
+
+
+</body>
+
+</html>
